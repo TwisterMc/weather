@@ -1,0 +1,111 @@
+.app-root {
+  background: #fff;
+  min-height: 100vh;
+  display: block;
+  padding: 3rem 0;
+}
+
+.app-container {
+  margin: 0 auto;
+}
+
+.app-title {
+  font-weight: 700;
+  font-size: 2.1rem;
+  color: #1a5fa0;
+  margin: 0;
+}
+
+.weather-gradient-card {
+  border-radius: 40px;
+  box-shadow: 0 8px 32px 0 rgba(31,38,135,0.18);
+  padding: 2.5rem 2rem;
+  margin: 0 auto 2.5rem auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 850px;
+}
+
+@media (max-width: 768px) {
+  .weather-gradient-card {
+    margin: 10px;
+  }
+}
+
+.weather-cards-row {
+  display: flex;
+  gap: 2.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+  flex-direction: row;
+}
+
+.location-toggle-btn {
+  background: #f3f6fa;
+  color: #1a5fa0;
+  border: none;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 0.6rem 1.6rem;
+  box-shadow: none;
+  cursor: pointer;
+  transition: all 0.2s;
+  outline: none;
+  
+  /* Ensure button is always tabbable */
+}
+
+.location-toggle-btn[tabindex="-1"] {
+  outline: none !important;
+  pointer-events: none;
+}
+
+.location-toggle-btn:focus {
+  outline: 2px solid #1a5fa0;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 3px #43cea233;
+}
+
+.location-toggle-btn[aria-expanded="true"] {
+  outline: 2px solid #1a5fa0; 
+}
+
+.location-toggle-btn:hover,
+.location-toggle-btn:active {
+  background: #1a5fa0;
+  color: #fff;
+  box-shadow: 0 2px 8px 0 rgba(31,38,135,0.10);
+}
+
+.location-switcher-flydown {
+  position: absolute;
+  top: -40px;
+  left: 50%;
+  transform: translate(-50%, -30px) scaleY(0.95);
+  min-width: 340px;
+  max-width: 900px;
+  width: 100%;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px 0 rgba(31,38,135,0.18);
+  padding: 0;
+  z-index: 12;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.32s cubic-bezier(0.4,0,0.2,1), transform 0.32s cubic-bezier(0.4,0,0.2,1);
+}
+
+@media (max-width: 600px) {
+  .location-switcher-flydown {
+    max-width: 96%;
+  }
+}
+
+.location-toggle-btn[aria-expanded="true"] + .location-switcher-flydown {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(-50%, 8px) scaleY(1);
+}

@@ -1,0 +1,69 @@
+.three-day-forecast {
+  max-width: 850px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.three-day-forecast__row {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+.three-day-forecast__card {
+  background: rgba(255,255,255,0.95);
+  border-radius: 24px;
+  box-shadow: 0 4px 16px 0 rgba(31,38,135,0.10);
+  padding: 20px;
+  min-width: 140px;
+}
+
+@media (max-width: 500px) {
+    .three-day-forecast__row {
+        gap: 16px;
+    }
+  .three-day-forecast__card {
+    min-width: 117px;
+    padding: 10px;
+  }
+}
+
+.three-day-forecast__date {
+  font-weight: 600;
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+.three-day-forecast__date--today {
+  color: #1a5fa0;
+}
+
+.three-day-forecast__icon {
+  font-size: 32px;
+  margin-bottom: 4px;
+}
+
+.three-day-forecast__condition {
+  font-size: 14px;
+  color: #444;
+  margin-bottom: 8px;
+}
+
+.three-day-forecast__temps {
+  font-size: 15px;
+  color: #1a5fa0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.three-day-forecast__temps-c {
+  color: #888;
+  font-size: 13px;
+}
+
+.three-day-forecast__na {
+  color: #888;
+  font-size: 13px;
+}
