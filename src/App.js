@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import WeatherCard from './WeatherCard';
-import { getLatLonFromLocation, weatherMap, getWeatherIcon, getConditionText } from './locationUtils';
-import logo from './logo.svg';
+import { getLatLonFromLocation, weatherMap } from './locationUtils';
 import './App.css';
 import './WeatherCard.css';
 import './AppStyles.css';
@@ -61,6 +60,7 @@ function App() {
         setError(err.message);
         setLoading(false);
       });
+      // eslint-disable-next-line
   }, [latitude, longitude]);
 
   // Set display location string only after weather data loads and only when lat/lon changes
