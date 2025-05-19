@@ -1,6 +1,7 @@
-# Getting Started with Create React App
+# Weather App
+This project is a learning project utilizing GitHub Copilot Agent and Open-metro's weather API.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Other Standard React Stuff Below
 
 ## Available Scripts
 
