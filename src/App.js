@@ -60,7 +60,6 @@ function App() {
         setError(err.message);
         setLoading(false);
       });
-      // eslint-disable-next-line
   }, [latitude, longitude]);
 
   // Set display location string only after weather data loads and only when lat/lon changes
@@ -93,6 +92,7 @@ function App() {
       setLastLon(longitude);
       setShowLocationForm(false);
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loading, isFetchingLocation, latitude, longitude, pendingLocation, usedMyLocation]);
 
   // Detect current location on mount
