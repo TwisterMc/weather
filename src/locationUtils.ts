@@ -31,7 +31,7 @@ export async function getLatLonFromLocation({ city, state, zip }: LocationInput)
   const response = await fetch(url, { headers: { 'Accept-Language': 'en' } });
   if (!response.ok) throw new Error('Location lookup failed');
   const data: Array<{ lat: string; lon: string }> = await response.json();
-  if (data.length === 0) throw new Error('Location not found');
+  if (data.length === 0 || !data[0]) throw new Error('Location not found');
   return {
     lat: parseFloat(data[0].lat),
     lon: parseFloat(data[0].lon)
