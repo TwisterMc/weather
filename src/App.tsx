@@ -10,10 +10,10 @@ import Footer from './Footer';
 
 function App() {
   const [temperature, setTemperature] = useState(null);
-  const [temperatureC, setTemperatureC] = useState(null);
+  const [temperatureC, setTemperatureC] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [iconUrl, setIconUrl] = useState(null);
+  const [iconUrl, setIconUrl] = useState<string | null>(null);
   const [condition, setCondition] = useState('');
   const [windSpeed, setWindSpeed] = useState(null);
   const [feelsLike, setFeelsLike] = useState(null);
@@ -34,7 +34,7 @@ function App() {
   const [showLocationForm, setShowLocationForm] = useState(false);
 
   // State for last updated timestamp
-  const [lastUpdated, setLastUpdated] = useState(null);
+  const [lastUpdated, setLastUpdated] = useState<string | null>(null);
 
   useEffect(() => {
     fetchWeatherData();
@@ -128,7 +128,7 @@ function App() {
   }, []);
 
   // Helper to get background gradient based on temperature (F)
-  function getBackgroundGradient(temp) {
+  function getBackgroundGradient(temp: number | null) {
     if (temp === null || isNaN(temp)) {
       return 'linear-gradient(135deg, #74ebd5 0%, #ACB6E5 100%)'; // default
     }

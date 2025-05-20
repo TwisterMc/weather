@@ -1,6 +1,22 @@
 import React from 'react';
 import './WeatherCard.css';
 
+export interface WeatherCardProps {
+  title: string;
+  iconUrl: string | null;
+  condition: string;
+  temperature: number | string | null;
+  feelsLike: number | string | null;
+  wind: number | string | null;
+  precipitation: number | string | null;
+  loading: boolean;
+  error: string | null;
+  unitSymbol: string;
+  windLabel: string;
+  windUnit: string;
+  precipitationLabel: string;
+}
+
 export default function WeatherCard({
   title,
   iconUrl,
@@ -15,7 +31,7 @@ export default function WeatherCard({
   windLabel,
   windUnit,
   precipitationLabel
-}) {
+}: WeatherCardProps) {
   return (
     <header className="weather-card">
       <div className="weather-card__current-label">Current</div>

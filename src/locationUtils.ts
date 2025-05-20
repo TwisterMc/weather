@@ -1,5 +1,24 @@
+// Types for location input and weather map
+export interface LocationInput {
+  city?: string;
+  state?: string;
+  zip?: string;
+}
+
+export interface LatLon {
+  lat: number;
+  lon: number;
+}
+
+export interface WeatherMapEntry {
+  icon: string;
+  text: string;
+}
+
+export type WeatherMap = Record<number, WeatherMapEntry>;
+
 // Utility to fetch lat/lon from city/state or zip using Nominatim
-export async function getLatLonFromLocation({ city, state, zip }) {
+export async function getLatLonFromLocation({ city, state, zip }: LocationInput): Promise<LatLon> {
   let query = '';
   if (zip) {
     query = encodeURIComponent(zip);
@@ -11,7 +30,7 @@ export async function getLatLonFromLocation({ city, state, zip }) {
   const url = `https://nominatim.openstreetmap.org/search?q=${query}&format=json&limit=1`;
   const response = await fetch(url, { headers: { 'Accept-Language': 'en' } });
   if (!response.ok) throw new Error('Location lookup failed');
-  const data = await response.json();
+  const data: Array<{ lat: string; lon: string }> = await response.json();
   if (data.length === 0) throw new Error('Location not found');
   return {
     lat: parseFloat(data[0].lat),
@@ -20,7 +39,7 @@ export async function getLatLonFromLocation({ city, state, zip }) {
 }
 
 // Weather code to icon/text map
-export const weatherMap = {
+export const weatherMap: WeatherMap = {
   0: { icon: '☀️', text: 'Clear sky' },
   1: { icon: '🌤️', text: 'Mainly clear' },
   2: { icon: '⛅', text: 'Partly cloudy' },
@@ -51,10 +70,10 @@ export const weatherMap = {
   99: { icon: '⛈️', text: 'Thunderstorm with heavy hail' },
 };
 
-export function getWeatherIcon(code) {
+export function getWeatherIcon(code: number): string {
   return weatherMap[code]?.icon || '❓';
 }
 
-export function getConditionText(code) {
+export function getConditionText(code: number): string {
   return weatherMap[code]?.text || 'Unknown';
 }

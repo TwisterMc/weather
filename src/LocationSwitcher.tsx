@@ -1,11 +1,30 @@
 import React from 'react';
 import './LocationSwitcher.css';
 
+type LocationSwitcherProps = {
+  city: string;
+  state: string;
+  zip: string;
+  locError: string;
+  isFetchingLocation: boolean;
+  setCity: (city: string) => void;
+  setState: (state: string) => void;
+  setZip: (zip: string) => void;
+  setLocError: (error: string) => void;
+  setIsFetchingLocation: (fetching: boolean) => void;
+  setUsedMyLocation: (used: boolean) => void;
+  getLatLonFromLocation: (params: { city: string; state: string; zip: string }) => Promise<{ lat: number; lon: number }>;
+  setLatitude: (lat: number) => void;
+  setLongitude: (lon: number) => void;
+  show: boolean;
+  onClose?: () => void;
+};
+
 export default function LocationSwitcher({
   city, state, zip, locError, isFetchingLocation,
   setCity, setState, setZip, setLocError, setIsFetchingLocation, setUsedMyLocation,
   getLatLonFromLocation, setLatitude, setLongitude, show, onClose
-}) {
+}: LocationSwitcherProps) {
   if (!show) return null;
   return (
     <form
@@ -20,7 +39,7 @@ export default function LocationSwitcher({
           setLatitude(result.lat);
           setLongitude(result.lon);
         } catch (err) {
-          setLocError(err.message);
+          setLocError(err instanceof Error ? err.message : String(err));
         } finally {
           setIsFetchingLocation(false);
         }

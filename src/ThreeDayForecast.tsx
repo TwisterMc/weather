@@ -2,10 +2,24 @@ import React, { useEffect, useState } from 'react';
 import { getWeatherIcon, getConditionText } from './locationUtils';
 import './ThreeDayForecast.css';
 
-export default function ThreeDayForecast({ latitude, longitude }) {
-  const [forecast, setForecast] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+interface ThreeDayForecastProps {
+  latitude: number;
+  longitude: number;
+}
+
+interface ForecastDay {
+  date: string;
+  maxF: number | null;
+  minF: number | null;
+  maxC: string | null;
+  minC: string | null;
+  code: number;
+}
+
+export default function ThreeDayForecast({ latitude, longitude }: ThreeDayForecastProps) {
+  const [forecast, setForecast] = useState<ForecastDay[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     if (!latitude || !longitude) return;
@@ -24,7 +38,7 @@ export default function ThreeDayForecast({ latitude, longitude }) {
         }
         // Only show today and next 3 days (never previous days)
         const today = new Date();
-        const allDays = data.daily.time.map((date, i) => {
+        const allDays: ForecastDay[] = data.daily.time.map((date: string, i: number) => {
           const maxF = data.daily.temperature_2m_max[i];
           const minF = data.daily.temperature_2m_min[i];
           return {
@@ -46,13 +60,13 @@ export default function ThreeDayForecast({ latitude, longitude }) {
         setForecast(filtered.slice(0, 4));
         setLoading(false);
       })
-      .catch(err => {
+      .catch((err: Error) => {
         setError(err.message);
         setLoading(false);
       });
   }, [latitude, longitude]);
 
-  function getDayLabel(dateStr, idx) {
+  function getDayLabel(dateStr: string, idx: number): string {
     const today = new Date();
     const date = new Date(dateStr);
     if (
