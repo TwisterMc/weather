@@ -6,6 +6,7 @@ import './WeatherCard.css';
 import './AppStyles.css';
 import ThreeDayForecast from './ThreeDayForecast';
 import LocationSwitcher from './LocationSwitcher';
+import Footer from './Footer';
 
 function App() {
   const [temperature, setTemperature] = useState(null);
@@ -32,7 +33,16 @@ function App() {
   // New state variable to control the visibility of the location form
   const [showLocationForm, setShowLocationForm] = useState(false);
 
+  // State for last updated timestamp
+  const [lastUpdated, setLastUpdated] = useState(null);
+
   useEffect(() => {
+    fetchWeatherData();
+    // eslint-disable-next-line
+  }, [latitude, longitude]);
+
+  function fetchWeatherData() {
+    setLoading(true);
     fetch(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,apparent_temperature,weather_code,wind_speed_10m,precipitation_probability&temperature_unit=fahrenheit&timezone=America%2FChicago`)
       .then((response) => {
         if (!response.ok) throw new Error('Network response was not ok');
@@ -54,13 +64,18 @@ function App() {
         const weather = weatherMap[weatherCode] || { icon: '❓', text: 'Unknown' };
         setIconUrl(weather.icon);
         setCondition(weather.text);
+        setLastUpdated(new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }));
         setLoading(false);
       })
       .catch((err) => {
         setError(err.message);
         setLoading(false);
       });
-  }, [latitude, longitude]);
+  }
+
+  function refreshWeatherData() {
+    fetchWeatherData();
+  }
 
   // Set display location string only after weather data loads and only when lat/lon changes
   const [pendingLocation, setPendingLocation] = useState('');
@@ -246,8 +261,23 @@ function App() {
             />
           </div>
            <ThreeDayForecast latitude={latitude} longitude={longitude} />
+         
         </div>
       </div>
+      <section className="last-updated-row">
+        <span className="last-updated-label">
+          Last updated: {lastUpdated ? lastUpdated : '—'}
+        </span>
+        <button
+          type="button"
+          className="location_switcher__btn location-switcher__refresh-btn"
+          onClick={refreshWeatherData}
+          aria-label="Refresh weather data"
+        >
+          Refresh
+        </button>
+      </section>
+      <Footer />
     </div>
   );
 }

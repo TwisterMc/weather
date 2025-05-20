@@ -1,0 +1,19 @@
+/* Footer styles for weather app */
+.app-footer {
+  text-align: center;
+  margin-top: 32px;
+  color: #888;
+  font-size: 15px;
+}
+
+.app-footer__link {
+  color: #1a5fa0;
+  text-decoration: underline;
+  transition: color 0.18s;
+}
+
+.app-footer__link:hover,
+.app-footer__link:focus {
+  color: #174b7a;
+  outline: none;
+}

@@ -172,3 +172,36 @@
   font-weight: 600;
   font-size: 15px;
 }
+
+.location-switcher__refresh-btn {
+  background: #fff;
+  color: #1a5fa0;
+  border: 2px solid #1a5fa0;
+  font-weight: 600;
+  border-radius: 8px;
+  transition: background 0.18s, color 0.18s, border-color 0.18s, box-shadow 0.18s;
+  cursor: pointer;
+}
+.location-switcher__refresh-btn:hover,
+.location-switcher__refresh-btn:focus {
+  background: #eaf4fb;
+  color: #174b7a;
+  border-color: #174b7a;
+  box-shadow: 0 2px 8px 0 rgba(31,38,135,0.10);
+  outline: 2px solid #1a5fa0;
+  outline-offset: 2px;
+}
+
+.last-updated-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 18px;
+  margin-bottom: 6px;
+}
+.last-updated-label {
+  color: #888;
+  font-size: 15px;
+}
