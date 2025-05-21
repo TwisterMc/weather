@@ -174,6 +174,14 @@ function App() {
 
   return (
     <div className="app-root">
+      {/* Alert banner for Next.js version */}
+      <div className="alert-banner" role="alert">
+        🚀 The new and improved version of this app is now available at{' '}
+        <a href="https://weather-next.pages.dev/" target="_blank" rel="noopener noreferrer" className="alert-banner__link">
+          weather-next.pages.dev
+        </a>
+        !
+      </div>
       <div className="app-container">
         {/* Location Switcher Toggle */}
         <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 24, position: 'relative', zIndex: 10 }}>

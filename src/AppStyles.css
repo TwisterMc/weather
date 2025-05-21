@@ -3,10 +3,11 @@
   min-height: 100vh;
   display: block;
   padding: 3rem 0;
+  padding-top: 3.2rem; /* Add top padding to prevent content from being hidden under the fixed banner */
 }
 
 .app-container {
-  margin: 0 auto;
+  margin: 30px auto;
 }
 
 .app-title {
@@ -82,7 +83,7 @@
 
 .location-switcher-flydown {
   position: absolute;
-  top: -40px;
+  top: -20px;
   left: 50%;
   transform: translate(-50%, -30px) scaleY(0.95);
   min-width: 340px;
@@ -108,4 +109,33 @@
   opacity: 1;
   pointer-events: auto;
   transform: translate(-50%, 8px) scaleY(1);
+}
+
+/* Alert banner for Next.js version */
+.alert-banner {
+  background: linear-gradient(90deg, #1a5fa0 0%, #43cea2 100%);
+  color: #fff;
+  font-weight: 600;
+  font-size: 1.05rem;
+  text-align: center;
+  padding: 0.75rem 0.5rem;
+  letter-spacing: 0.01em;
+  box-shadow: 0 2px 8px rgba(26, 95, 160, 0.08);
+  border-bottom: 2px solid #185a9d;
+  z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+.alert-banner__link {
+  color: #fff;
+  text-decoration: underline;
+  font-weight: 700;
+  transition: color 0.2s;
+}
+.alert-banner__link:hover,
+.alert-banner__link:focus {
+  color: #ffd200;
+  outline: none;
 }
