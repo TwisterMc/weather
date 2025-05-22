@@ -177,8 +177,8 @@ function App() {
       {/* Alert banner for Next.js version */}
       <div className="alert-banner" role="alert">
         🚀 The new and improved version of this app is now available at{' '}
-        <a href="https://weather-next.pages.dev/" rel="noopener noreferrer" className="alert-banner__link">
-          weather-next.pages.dev
+        <a href="https://weather-next-murex.vercel.app/" rel="noopener noreferrer" className="alert-banner__link">
+          https://weather-next-murex.vercel.app/
         </a>
         !
       </div>
